@@ -1,0 +1,111 @@
+.evaluation-container {
+    font-family: "Arial", sans-serif;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+    margin: auto;
+    background-image: url('/src/Assest/Group\ 1244831098.png');
+    background-repeat: no-repeat;
+    height: 100vh;
+ 
+  
+  }
+  .mainback{
+    background-image: url('/src/Assest/Intro\ \(1\)-Photoroom.jpg');
+    background-repeat: no-repeat;
+    background-size: cover; /* Adjust to fit the container */
+    background-position: top; /* Center the image */
+    height: 100vh;
+
+  }
+  
+  .evaluation-header .logo {
+    height: 53px;
+    width: 42px;
+    object-fit: none;
+    margin-bottom: 1rem;
+    display: flex;
+  }
+  
+  .evaluation-header h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    color: #333;
+  }
+  
+  .evaluation-header p {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .evaluation-instructions {
+    margin-top: 1.5rem;
+  }
+  
+  .evaluation-instructions h3 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #333;
+    line-height: 10px;
+  }
+  
+  .evaluation-instructions p {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .rating-scale {
+    margin: 2rem auto;
+    max-width: 600px;
+  }
+  
+  .scale-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4f4f4;
+    border-radius: 30px;
+    overflow: hidden;
+    height: 50px;
+    border: 0.9px solid #1E1A1B;
+  }
+  
+  .scale-item {
+    flex: 1;
+    font-size: 1rem;
+    padding: 0.8rem 0;
+    background-color: #333;
+    color: white;
+  
+  }
+  
+  .scale-item:last-child {
+    border-right: none;
+  }
+  
+  .scale-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: #666;
+  }
+  
+  .evaluation-button {
+    margin-top: 2rem;
+    
+    background-color: black;
+    color: white;
+    font-size: 10px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .evaluation-button:hover {
+    background-color: #333;
+  }
+  

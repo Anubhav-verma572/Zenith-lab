@@ -1,0 +1,118 @@
+
+/* FormComponent.css */
+
+.form-container {
+    font-family: Arial, sans-serif;
+    background-image: url('/src/Assest/Intro\ \(5\)\ \(1\).png');
+  background-repeat: no-repeat;
+  background-size: cover; /* Adjust to fit the container */
+  background-position: top; /* Center the image */
+  width: 100% !important; /* Adjust width if needed */
+  height: 100vh; /* Adjust height as needed */
+    margin: 0 auto;
+   
+    text-align: center;
+    
+
+    border-radius: 8px;
+    width: 90%;
+  }
+  
+  .form-header {
+    margin-bottom: 20px;
+    display: flex;
+  }
+  
+  .logo {
+    width: 40px;
+    margin-bottom: 10px;
+  }
+  
+  h1 {
+    font-size: 1.9rem;
+   color: black;
+  }
+  
+  .form-fields {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-size: 1rem;
+    color: black;
+    margin-bottom: 5px;
+    text-align: left;
+    font-weight: 500;
+  }
+  
+  input {
+    padding: 8px;
+    font-size: 0.9rem;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+   
+  }
+  
+  input:focus {
+    border-color: #6c63ff;
+    outline: none;
+    /* box-shadow: 0 0 5px rgba(108, 99, 255, 0.5); */
+  }
+  
+  .form-button {
+   
+    background-color: rgba(128, 130, 133, 0.04);
+    color: black;
+    font-size: 1rem;
+    width: 70px;
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: 35px;
+    height: 35px;
+  }
+  
+  .form-button:hover {
+    background-color: #574bd6;
+  }
+  
+  .form-note {
+    font-size: 0.8rem;
+    color: black;
+    margin-top: 10px;
+  }
+  .lastow{
+    align-items: baseline;
+    gap: 5px;
+  }
+  .error-text {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: left;
+  }
+  .form-buttons{
+  
+    color: black;
+    font-size: 1rem;
+    
+    cursor: pointer;
+ border: none;
+ background-color: transparent;
+   
+
+  }

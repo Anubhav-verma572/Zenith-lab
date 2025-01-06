@@ -1,0 +1,78 @@
+.questionnaire-container {
+    font-family: Arial, sans-serif;
+    /* color: #333; */
+    text-align: center;
+    padding: 20px;
+  
+        margin: 0 auto;
+     background: rgba(251, 251, 251, 1); 
+    border-radius: 10px;
+     background-image: url('/src/Assest/Question\ 1\ \(2\)-Photoroom.png');
+  background-repeat: no-repeat;
+  background-size: cover; /* Adjust to fit the container */
+  background-position: bottom; /* Center the image */
+  width: 100%; /* Adjust width if needed */
+  height: 100vh; /* Adjust height as needed */
+  }
+ 
+  
+  .header .logo {
+    width: 50px;
+    margin-bottom: 20px;
+  }
+  
+  .content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  
+  .question {
+    margin-bottom: 20px;
+  }
+  
+  .rating-group {
+    /* display: flex;
+    justify-content: center; */
+    /* gap: 10px !important; */
+  }
+  
+  .rating-btn {
+    width: 57px;
+    height: 47px;
+    border-radius: 39px;
+    border: 1px solid rgba(155, 155, 155, 1);
+    cursor: pointer;
+    font-size: 16px;
+    
+    transition: all 0.3s;
+  }
+  
+  .rating-btn.selected {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .navigation {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .back-btn,
+  .next-btn {
+    border: 0.9px solid black;
+    padding: 4px 28px;
+    border-radius: 15px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .back-btn:hover,
+  .next-btn:hover {
+    background-color: #444;
+  }
+  
