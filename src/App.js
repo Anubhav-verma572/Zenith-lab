@@ -7,13 +7,14 @@ import CongratsUI from "./Components/CongratsUI/CongratsUI";
 import FormComponent from "./Components/FormComponent/FormComponent";
 import "./App.css";
 
+
 const App = () => {
   const [overallScore, setOverallScore] = useState(0);
   const [sectionScores, setSectionScores] = useState([]);
 
-  const updateScore = (overall, section) => {
+  const updateScore = (overall, sections) => {
     setOverallScore(overall);
-    setSectionScores(section);
+    setSectionScores(sections);
   };
 
   return (
@@ -28,15 +29,25 @@ const App = () => {
           <Route path="/quest" element={<CongratsUI />} />
           <Route path="/FormComponent" element={<FormComponent />} />
           <Route
-            path="/score-overview"
-            element={
-              <ScoreOverview
-                overallScore={overallScore}
-                sectionScores={sectionScores}
-              />
-            }
+          path="/score-overview"
+          element={
+            <ScoreOverview
+              overallScore={overallScore}
+              sectionScores={sectionScores}
+              questions={[
+                { title: "Market Opportunity" },
+                { title: "Customer Journey" },
+                { title: "Product Diversification" },
+                { title: "Technology" },
+                { title: "Revenue Model" },
+                { title: "Operations" },
+                { title: "Partnerships" },
+              ]}
+            />
+          }
           />
         </Routes>
+       
       </Router>
     </div>
   );

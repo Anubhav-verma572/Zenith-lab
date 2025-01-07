@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./Questionnaire.css";
 import { Image } from "../../Assest/Allphotos";
 
+
 const questions = [
   {
     title: "1. Market Opportunity",
@@ -21,7 +22,7 @@ const questions = [
     correctAnswers: [4, 2],
   },
   {
-    title: "3. Product/Service Diversification",
+    title: "3. Product Diversification",
     questions: [
       "Have alternative revenue streams or new products been thoroughly assessed?",
       "Are innovative solutions being explored to diversify offerings?",
@@ -65,29 +66,49 @@ const questions = [
 const Questionnaire = ({ updateScore }) => {
   const [currentStep, setCurrentStep] = useState(0); // Step starts from 0 for the array index
   const [selectedRatings, setSelectedRatings] = useState({});
+  const [showError, setShowError] = useState(false);
   const navigate = useNavigate(); // Initialize useNavigate
 
+  // Check if all questions in the current step are answered
+  const areAllQuestionsAnswered = () => {
+    const currentQuestions = questions[currentStep].questions;
+    return currentQuestions.every((_, index) =>
+      selectedRatings.hasOwnProperty(`step${currentStep}_question${index}`)
+    );
+  };
+
+  // Handle rating selection
   const handleRatingChange = (questionIndex, rating) => {
     const questionKey = `step${currentStep}_question${questionIndex}`;
     setSelectedRatings({ ...selectedRatings, [questionKey]: rating });
   };
 
+  // Handle "Next" button click
   const handleNext = () => {
+    if (!areAllQuestionsAnswered()) {
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000); // Auto-hide error after 3 seconds
+      return;
+    }
+    setShowError(false);
+
     if (currentStep < questions.length - 1) {
-      setCurrentStep(currentStep + 1); // Proceed to the next step
+      setCurrentStep(currentStep + 1); // Go to the next step
     } else {
-      calculateScore(); // Calculate score before navigation
-      navigate("/quest"); // Navigate to the CongratsUI page ("/quest")
+      calculateScore();
+      navigate("/quest"); // Navigate to the next page
     }
   };
 
+  // Handle "Back" button click
   const handleBack = () => {
     if (currentStep > 0) setCurrentStep(currentStep - 1);
   };
 
+  // Calculate the final score
   const calculateScore = () => {
+    const MAX_SCORE_PER_SECTION = 14; // Max score for a section
     let totalScore = 0;
-    let totalQuestions = 0;
     const sectionScores = [];
 
     questions.forEach((section, stepIndex) => {
@@ -101,71 +122,70 @@ const Questionnaire = ({ updateScore }) => {
         if (selectedAnswer === correctAnswer) {
           sectionScore += 7; // Each correct answer contributes 7%
         }
-
-        totalQuestions += 1;
       });
 
-      sectionScores.push(Math.min(sectionScore, 14)); // Ensure sectionScore does not exceed 14%
+      sectionScores.push(Math.min(sectionScore, MAX_SCORE_PER_SECTION)); // Cap at 14%
       totalScore += sectionScore;
     });
 
     const overallScore = Math.round(
-      (totalScore / (questions.length * 14)) * 100 // Overall percentage (out of 100)
-    );
-    updateScore(overallScore, sectionScores);
+      (totalScore / (questions.length * MAX_SCORE_PER_SECTION)) * 100
+    ); // Overall percentage
+    updateScore(overallScore, sectionScores); // Pass scores to parent
   };
 
   return (
-    <div className="">
-      <div className="questionnaire-container">
-        <div className="container  pt-3 pb-0">
-          <div className="evaluation-header">
-            <div className="d-flex justify-content-start">
-              <img src={Image.logo} alt="Logo" className="logo" />
-            </div>
+    <div className="questionnaire-container">
+      <div className="container pt-3 pb-0">
+        <div className="evaluation-header">
+          <div className="d-flex justify-content-start">
+            <img src={Image.logo} alt="Logo" className="logo" />
           </div>
-          <div className="content mt-5 text-dark">
-            <h2 className="text-start ms-5 ps-5">
-              {questions[currentStep].title}
-            </h2>
-            {questions[currentStep].questions.map((question, index) => (
-              <div key={index} className="question">
-                <p className="text-dark text-start ms-5 ps-5">{question}</p>
-                <div className="rating-group text-start ms-5 ps-5">
-                  {[1, 2, 3, 4, 5].map((rating) => (
-                    <button
-                      key={rating}
-                      className={`rating-btn m-2  ${
-                        selectedRatings[
-                          `step${currentStep}_question${index}`
-                        ] === rating
-                          ? "selected"
-                          : ""
-                      }`}
-                      onClick={() => handleRatingChange(index, rating)}
-                    >
-                      {rating}
-                    </button>
-                  ))}
-                </div>
+        </div>
+        <div className="content mt-5 text-dark">
+          <h2 className="text-start ms-5 ps-5">{questions[currentStep].title}</h2>
+          {questions[currentStep].questions.map((question, index) => (
+            <div key={index} className="question">
+              <p className="text-dark text-start ms-5 ps-5">{question}</p>
+              <div className="rating-group text-start ms-5 ps-5">
+                {[1, 2, 3, 4, 5].map((rating) => (
+                  <button
+                    key={rating}
+                    className={`rating-btn m-2 ${
+                      selectedRatings[`step${currentStep}_question${index}`] ===
+                      rating
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() => handleRatingChange(index, rating)}
+                  >
+                    {rating}
+                  </button>
+                ))}
               </div>
-            ))}
-
-            <div className="navigation">
-              <button
-                className="back-btn bg-transparent text-dark"
-                onClick={handleBack}
-                disabled={currentStep === 0}
-              >
-                Back
-              </button>
-              <button className="next-btn" onClick={handleNext}>
-                {currentStep === questions.length - 1
-                  ? "Submit & Finish"
-                  : "Next"}
-                <i className="fa-solid fa-arrow-right ps-2"></i>
-              </button>
             </div>
+          ))}
+
+          {showError && (
+            <p className="text-danger text-center mt-3">
+              Please answer all questions before proceeding.
+            </p>
+          )}
+
+          <div className="navigation">
+            <button
+              className="back-btn bg-transparent text-dark"
+              onClick={handleBack}
+              disabled={currentStep === 0}
+            >
+              Back
+            </button>
+            <button className="next-btn" onClick={handleNext}>
+              {currentStep === questions.length - 1
+                ? "Submit & Finish"
+                : "Next"}
+              <i className="fa-solid fa-arrow-right ps-2"></i>
+            </button>
           </div>
         </div>
       </div>

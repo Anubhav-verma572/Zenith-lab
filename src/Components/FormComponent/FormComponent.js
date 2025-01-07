@@ -24,7 +24,7 @@ const FormComponent = () => {
   };
 
   // Handle form submission
-  const handleStartEvaluation = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault(); // Prevent default form refresh
     const { firstName, lastName, email, companyName } = formData;
 
@@ -52,7 +52,7 @@ const FormComponent = () => {
           Enter the following details to get your future-proof <br /> score
         </h1>
 
-        <form className="form-fields" onSubmit={handleStartEvaluation}>
+        <form className="form-fields" onSubmit={handleFormSubmit}>
           <div className="form-row mt-3">
             <div className="form-group">
               <label htmlFor="firstName">What’s your Name?</label>
@@ -112,12 +112,18 @@ const FormComponent = () => {
           {error && <p className="error-text">{error}</p>}
 
           <div className="d-flex lastow mt-4">
-            {/* The "Next" button triggers the form submission and Enter key */}
+            {/* "Next" button triggers the form submission */}
             <button type="submit" className="form-button">
               Next
             </button>
-            <button type="submit" className="form-buttons">
-              press Enter
+
+            {/* "Press Enter" button navigates without validation */}
+            <button
+              type="button"
+              className="form-buttons"
+              onClick={() => navigate("/score-overview")}
+            >
+              Press Enter
             </button>
           </div>
         </form>

@@ -1,18 +1,15 @@
-// ScoreOverview.js
 import React from "react";
 import "./ScoreOverview.css";
-import BookCall from "../BookCall/BookCall";
-
 const ScoreOverview = ({ overallScore, sectionScores, questions }) => {
+  // Calculate average score
   const averageScore = Math.round(
     sectionScores.reduce((sum, score) => sum + score, 0) / sectionScores.length
   );
-
   return (
-    <div className="score-overview-container ">
-      <div className="score-overview d-flex">
+    <div className="score-overview-container">
+      <div className="score-overview">
         {/* Score Dial Section */}
-        <div className="score-dial ">
+        <div className="score-dial">
           <h3>Score Overview</h3>
           <div className="dial-container">
             <div className="dial"></div>
@@ -28,9 +25,9 @@ const ScoreOverview = ({ overallScore, sectionScores, questions }) => {
           </div>
         </div>
         {/* Average Score and Future-Proof Score Section */}
-        <div className="score-summary p-5">
-          <div className="average-score">
-            <p>{averageScore}%</p>
+        <div className="score-summary">
+        <div className="average-score">
+            <h4>{averageScore}%</h4>
             <p className="status">
               {overallScore >= 75
                 ? "Excellent"
@@ -55,27 +52,22 @@ const ScoreOverview = ({ overallScore, sectionScores, questions }) => {
         {/* Report Section */}
         <div className="report-section">
           <h4>Ready to dive deeper?</h4>
-          <p>
-            Get a comprehensive paid report tailored to your business,
-            including:
-          </p>
+          <p>Get a comprehensive paid report tailored to your business, including:</p>
           <ul>
             <li>Industry-specific benchmarks.</li>
             <li>A roadmap for growth and innovation.</li>
             <li>Actionable strategies for each category.</li>
           </ul>
-          <button className="report-button">
-            Book Your Detailed Report Now
-          </button>
+          <button className="report-button">Book Your Detailed Report Now</button>
         </div>
       </div>
       {/* Section Cards */}
-      <div className="container">
-        <div className="score-cards row mt-5">
+      <div className="container mt-5">
+        <div className="score-cards row">
           {questions.map((question, index) => (
             <div
               key={index}
-              className={`score-card  ${
+              className={`score-card col-lg-3 ${
                 sectionScores[index] === 14
                   ? "excellent"
                   : sectionScores[index] === 7
@@ -83,21 +75,18 @@ const ScoreOverview = ({ overallScore, sectionScores, questions }) => {
                   : "poor"
               }`}
             >
-              <div className="d-flex justify-content-between" >
-                <h5>{question.title}</h5>
-               
-                <button className="borderclass ">
-                  <strong>{sectionScores[index]}%</strong>
-                </button>
-              </div>
+              <h5>{question.title}</h5>
               <p>
-                  {sectionScores[index] === 14
-                    ? "Excellent"
-                    : sectionScores[index] === 7
-                    ? "Good"
-                    : "Poor"}
-                </p>
-              <p className="w-100">
+                {sectionScores[index] === 14
+                  ? "Excellent"
+                  : sectionScores[index] === 7
+                  ? "Good"
+                  : "Poor"}
+              </p>
+              <p>
+                <strong>{sectionScores[index]}%</strong>
+              </p>
+              <p>
                 Analysis of {question.title.toLowerCase()} shows{" "}
                 {sectionScores[index] === 14
                   ? "strong"
@@ -106,18 +95,11 @@ const ScoreOverview = ({ overallScore, sectionScores, questions }) => {
                   : "needs improvement"}{" "}
                 efforts.
               </p>
-              
             </div>
-            
-            
-          ))} <BookCall/>
-         
+          ))}
         </div>
-        
       </div>
-      
     </div>
   );
 };
-
 export default ScoreOverview;
