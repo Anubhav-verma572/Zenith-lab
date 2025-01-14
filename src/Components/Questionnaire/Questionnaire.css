@@ -15,14 +15,47 @@
   height: 100vh; /* Adjust height as needed */
   }
  
-  
+  @media screen and (min-width: 992px) {
+    .Market{
+      margin-left: 3rem;
+      padding-left: 3rem;
+    }
+    .rating-group{
+      justify-content: space-between;
+      display: inline-flex;
+      align-items: flex-start;
+position: relative;
+right: 25%;
+      gap: 10px;
+      margin: 0px !important;
+    }
+    }
+    @media screen and (max-width: 752px) {
+      .rating-group{
+        justify-content: space-between;
+        display: inline-flex;
+        align-items: flex-start;
+
+        gap: 10px;
+        margin: 0px !important;
+      }
+      }
+     
+        .rating-group{
+          justify-content: space-between;
+          display: inline-flex;
+          gap: 10px;
+        
+        }
+        
   .header .logo {
     width: 50px;
     margin-bottom: 20px;
   }
   
   .content h2 {
-    font-size: 24px;
+    font-size: clamp(1rem, 2.5vw, 2rem); 
+    white-space: nowrap;
     margin-bottom: 20px;
     font-weight: 700;
   }
@@ -38,13 +71,13 @@
   }
   
   .rating-btn {
-    width: 57px;
+  
     height: 47px;
     border-radius: 39px;
     border: 1px solid rgba(155, 155, 155, 1);
     cursor: pointer;
     font-size: 16px;
-    
+  
     transition: all 0.3s;
   }
   
@@ -75,4 +108,24 @@
   .next-btn:hover {
     background-color: #444;
   }
+  .rating-btn {
+   
+    display: inline-flex
+;
+    align-items: center;
+   padding: 15px;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.rating-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.rating-btn.selected {
+    background-color: black;
+    color: white;
+}
+
   

@@ -66,12 +66,7 @@ const FormComponent = () => {
               />
             </div>
 
-            <div
-              className="form-group"
-              style={{
-                marginTop: "29px",
-              }}
-            >
+            <div className="form-group" style={{ marginTop: "29px" }}>
               <input
                 type="text"
                 id="lastName"
@@ -109,19 +104,31 @@ const FormComponent = () => {
             </div>
           </div>
 
+          {/* Display error message if validation fails */}
           {error && <p className="error-text">{error}</p>}
 
-          <div className="d-flex lastow mt-4">
+          <div className="d-flex lastow mt-4 w-100">
             {/* "Next" button triggers the form submission */}
             <button type="submit" className="form-button">
               Next
             </button>
 
-            {/* "Press Enter" button navigates without validation */}
+            {/* "Press Enter" button triggers validation and navigation */}
             <button
               type="button"
               className="form-buttons"
-              onClick={() => navigate("/score-overview")}
+              onClick={() => {
+                const { firstName, lastName, email, companyName } = formData;
+
+                // Validation: Check if all fields are filled
+                if (!firstName || !lastName || !email || !companyName) {
+                  setError("Please fill in all the fields before proceeding.");
+                  return;
+                }
+
+                // Navigate to the next page if validation passes
+                navigate("/score-overview");
+              }}
             >
               Press Enter
             </button>

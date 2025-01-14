@@ -47,7 +47,7 @@ const CongratsUI = () => {
   return (
     <div className="congrats-container">
       {/* Header */}
-      <div className="w-100 ps-5 ms-5">
+      <div className="w-100">
         <div className="d-flex justify-content-start">
           <img src={Image.logo15} alt="Logo" className="mt-5 text-start" />
         </div>
@@ -59,7 +59,7 @@ const CongratsUI = () => {
         <h1 className="mb-0 text-white">step toward future-proofing your business</h1>
       </main>
 
-      <div className="d-flex">
+      <div className="d-flex colm">
         {/* Button to navigate */}
         <button className="score-button" onClick={handleStartEvaluation}>
           Check your score now!

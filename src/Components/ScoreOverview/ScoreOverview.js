@@ -9,6 +9,7 @@ const ScoreOverview = ({ overallScore, sectionScores, questions }) => {
   );
 
   return (
+    
     <div className="score-overview-container ">
       <div className="score-overview d-flex">
         {/* Score Dial Section */}
@@ -75,47 +76,40 @@ const ScoreOverview = ({ overallScore, sectionScores, questions }) => {
           {questions.map((question, index) => (
             <div
               key={index}
-              className={`score-card  ${
-                sectionScores[index] === 14
+              className={`score-card ${
+                sectionScores[index] >= 12
                   ? "excellent"
-                  : sectionScores[index] === 7
+                  : sectionScores[index] >= 7
                   ? "good"
                   : "poor"
               }`}
             >
-              <div className="d-flex justify-content-between" >
+              <div className="d-flex justify-content-between">
                 <h5>{question.title}</h5>
-               
-                <button className="borderclass ">
+                <button className="borderclass">
                   <strong>{sectionScores[index]}%</strong>
                 </button>
               </div>
               <p>
-                  {sectionScores[index] === 14
-                    ? "Excellent"
-                    : sectionScores[index] === 7
-                    ? "Good"
-                    : "Poor"}
-                </p>
+                {sectionScores[index] >= 12
+                  ? "Excellent"
+                  : sectionScores[index] >= 7
+                  ? "Good"
+                  : "Poor"}
+              </p>
               <p className="w-100">
                 Analysis of {question.title.toLowerCase()} shows{" "}
-                {sectionScores[index] === 14
+                {sectionScores[index] >= 12
                   ? "strong"
-                  : sectionScores[index] === 7
+                  : sectionScores[index] >= 7
                   ? "adequate"
                   : "needs improvement"}{" "}
                 efforts.
               </p>
-              
             </div>
-            
-            
-          ))} <BookCall/>
-         
+          ))}
         </div>
-        
       </div>
-      
     </div>
   );
 };

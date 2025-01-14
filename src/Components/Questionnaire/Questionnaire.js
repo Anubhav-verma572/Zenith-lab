@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./Questionnaire.css";
 import { Image } from "../../Assest/Allphotos";
 
-
 const questions = [
   {
     title: "1. Market Opportunity",
@@ -80,7 +79,8 @@ const Questionnaire = ({ updateScore }) => {
   // Handle rating selection
   const handleRatingChange = (questionIndex, rating) => {
     const questionKey = `step${currentStep}_question${questionIndex}`;
-    setSelectedRatings({ ...selectedRatings, [questionKey]: rating });
+    const weightedScore = parseFloat((rating * 1.42).toFixed(2)); // Multiply by 1.42 and round to 2 decimals
+    setSelectedRatings({ ...selectedRatings, [questionKey]: weightedScore });
   };
 
   // Handle "Next" button click
@@ -116,15 +116,11 @@ const Questionnaire = ({ updateScore }) => {
 
       section.questions.forEach((_, questionIndex) => {
         const questionKey = `step${stepIndex}_question${questionIndex}`;
-        const selectedAnswer = selectedRatings[questionKey];
-        const correctAnswer = section.correctAnswers[questionIndex];
-
-        if (selectedAnswer === correctAnswer) {
-          sectionScore += 7; // Each correct answer contributes 7%
-        }
+        const weightedScore = selectedRatings[questionKey] || 0; // Use weighted score
+        sectionScore += Math.min(weightedScore, 7); // Ensure the score does not exceed max for each question
       });
 
-      sectionScores.push(Math.min(sectionScore, MAX_SCORE_PER_SECTION)); // Cap at 14%
+      sectionScores.push(Math.min(sectionScore, MAX_SCORE_PER_SECTION)); // Cap section score at 14%
       totalScore += sectionScore;
     });
 
@@ -143,17 +139,19 @@ const Questionnaire = ({ updateScore }) => {
           </div>
         </div>
         <div className="content mt-5 text-dark">
-          <h2 className="text-start ms-5 ps-5">{questions[currentStep].title}</h2>
+         <div><h2 className="text-start Market d-flex">
+            {questions[currentStep].title}
+          </h2></div> 
           {questions[currentStep].questions.map((question, index) => (
             <div key={index} className="question">
-              <p className="text-dark text-start ms-5 ps-5">{question}</p>
-              <div className="rating-group text-start ms-5 ps-5">
+              <p className="text-dark text-start Market">{question}</p>
+              <div className="rating-group text-start Market ">
                 {[1, 2, 3, 4, 5].map((rating) => (
                   <button
                     key={rating}
-                    className={`rating-btn m-2 ${
+                    className={`rating-btn   ${
                       selectedRatings[`step${currentStep}_question${index}`] ===
-                      rating
+                      parseFloat((rating * 1.42).toFixed(2)) // Match the weighted score
                         ? "selected"
                         : ""
                     }`}

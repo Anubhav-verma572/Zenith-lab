@@ -13,7 +13,7 @@ const EvaluationForm = () => {
   return (
     <div className="mainback">
       <div className="evaluation-container">
-        <div className="container p-4">
+        <div className="container pt-4 pe-4 ps-4">
           <div className="evaluation-header">
             <div>
               <img src={Image.logo} alt="Logo" className="logo" />
@@ -22,7 +22,7 @@ const EvaluationForm = () => {
 
           <div className="evaluation-instructions">
             <h3 className="mt-4">New Revenue and Innovation</h3>
-            <h3 className="mt-4"> Opportunities Intake Form</h3>
+            <h3 className="mt-3"> Opportunities Intake Form</h3>
 
             <p className="mt-4">
               Find out your future-proof score in under 30 secs
@@ -76,17 +76,20 @@ const EvaluationForm = () => {
                 <div>Strong</div>
                 <div>Exceptional</div>
               </div>
-            </div>
+            
           </div>
-
-          <div className="d-flex align-items-end justify-content-end">
+            </div>
+            <div className="d-flex align-items-end justify-content-end">
             <button
               className="evaluation-button px-3 py-2"
               onClick={handleStartEvaluation} // Attach the click handler
             >
               Start the Evaluation →
             </button>
+            
           </div>
+
+          
         </div>
       </div>
     </div>
