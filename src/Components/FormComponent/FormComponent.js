@@ -130,7 +130,7 @@ const FormComponent = () => {
                 navigate("/score-overview");
               }}
             >
-              Press Enter
+              {/* Press Enter */}
             </button>
           </div>
         </form>

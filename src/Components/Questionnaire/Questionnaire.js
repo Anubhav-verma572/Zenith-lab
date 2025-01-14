@@ -144,7 +144,10 @@ const Questionnaire = ({ updateScore }) => {
           </h2></div> 
           {questions[currentStep].questions.map((question, index) => (
             <div key={index} className="question">
-              <p className="text-dark text-start Market">{question}</p>
+            <ul>
+            <li className="text-dark text-start Market markets">{question}</li>
+
+            </ul>
               <div className="rating-group text-start Market ">
                 {[1, 2, 3, 4, 5].map((rating) => (
                   <button
@@ -180,7 +183,7 @@ const Questionnaire = ({ updateScore }) => {
             </button>
             <button className="next-btn" onClick={handleNext}>
               {currentStep === questions.length - 1
-                ? "Submit & Finish"
+                ? "Next"
                 : "Next"}
               <i className="fa-solid fa-arrow-right ps-2"></i>
             </button>

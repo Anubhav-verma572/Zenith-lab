@@ -2,34 +2,70 @@
 import React from "react";
 import "./ScoreOverview.css";
 import BookCall from "../BookCall/BookCall";
-
+import GaugeChart from 'react-gauge-chart';
 const ScoreOverview = ({ overallScore, sectionScores, questions }) => {
   const averageScore = Math.round(
     sectionScores.reduce((sum, score) => sum + score, 0) / sectionScores.length
   );
 
   return (
-    
     <div className="score-overview-container ">
-      <div className="score-overview d-flex">
+      <div className="score-overview d-flex container">
         {/* Score Dial Section */}
-        <div className="score-dial ">
-          <h3>Score Overview</h3>
-          <div className="dial-container">
-            <div className="dial"></div>
-            <p className="percentage">{overallScore}%</p>
-            <p className="status">
-              Your Future-Proof Score is{" "}
+    <div className="d-flex combine-e">
+    <div
+      style={{
+        position: "relative",
+       // Double the height for larger curve
+        width: "400px",
+        padding: "20px" // Double the width for larger curve
+      }}
+    >
+      {/* Gauge Chart */}
+      <p className="text-center">Score Overview</p>
+      <GaugeChart
+        id="gauge-chart"
+        nrOfLevels={3}
+        colors={["#FF6B6B", "#FFC857", "#4CAF50"]}
+        percent={overallScore / 100}
+        arcWidth={0.2}
+        textColor="transparent" // Make the default text invisible
+        style={{
+          height: "100%", // Scale to fit the container
+          width: "100%",  // Scale to fit the container
+        }}
+      />
+
+      {/* Custom Percentage Display */}
+      <div className="abc"
+        style={{
+          position: "absolute",
+          top: "196px", // Adjusted position for larger size
+          left: "50%",
+          transform: "translateX(-50%)",
+          color: "white", // White text color
+          fontSize: "26px", // Larger font size
+          fontWeight: "bold",
+          width: "100%",
+        }}
+      >
+        {overallScore}%
+        
+        <p className="status statuss d-flex">
+              Your Future-Proof Score is <p className="">
+              {" "}
               {overallScore >= 75
                 ? "excellent"
                 : overallScore >= 50
                 ? "average"
                 : "poor"}
+              </p>
             </p>
-          </div>
-        </div>
+      </div>
+    
+    </div>
         {/* Average Score and Future-Proof Score Section */}
-        <div className="score-summary p-5">
+        <div className="score-summary">
           <div className="average-score">
             <p>{averageScore}%</p>
             <p className="status">
@@ -53,6 +89,7 @@ const ScoreOverview = ({ overallScore, sectionScores, questions }) => {
             </p>
           </div>
         </div>
+    </div>
         {/* Report Section */}
         <div className="report-section">
           <h4>Ready to dive deeper?</h4>
@@ -76,7 +113,7 @@ const ScoreOverview = ({ overallScore, sectionScores, questions }) => {
           {questions.map((question, index) => (
             <div
               key={index}
-              className={`score-card ${
+              className={`score-card SC ${
                 sectionScores[index] >= 12
                   ? "excellent"
                   : sectionScores[index] >= 7
@@ -85,19 +122,19 @@ const ScoreOverview = ({ overallScore, sectionScores, questions }) => {
               }`}
             >
               <div className="d-flex justify-content-between">
-                <h5>{question.title}</h5>
+                <h4>{question.title}</h4>
                 <button className="borderclass">
                   <strong>{sectionScores[index]}%</strong>
                 </button>
               </div>
-              <p>
+              <p className="">
                 {sectionScores[index] >= 12
                   ? "Excellent"
                   : sectionScores[index] >= 7
                   ? "Good"
                   : "Poor"}
               </p>
-              <p className="w-100">
+              <p className="w-100 poor">
                 Analysis of {question.title.toLowerCase()} shows{" "}
                 {sectionScores[index] >= 12
                   ? "strong"

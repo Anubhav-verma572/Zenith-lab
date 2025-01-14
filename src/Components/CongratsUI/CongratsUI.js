@@ -47,7 +47,7 @@ const CongratsUI = () => {
   return (
     <div className="congrats-container">
       {/* Header */}
-      <div className="w-100">
+      <div className="w-100 container">
         <div className="d-flex justify-content-start">
           <img src={Image.logo15} alt="Logo" className="mt-5 text-start" />
         </div>
@@ -55,8 +55,8 @@ const CongratsUI = () => {
 
       {/* Main Content */}
       <main className="main-content">
-        <h1 className="mb-0 text-white">Congratulations! You’ve taken the first</h1>
-        <h1 className="mb-0 text-white">step toward future-proofing your business</h1>
+        <h1 className="mb-0 text-white">Congratulations! You’ve taken the first step </h1>
+        <h1 className="mb-0 text-white">toward future-proofing your business</h1>
       </main>
 
       <div className="d-flex colm">

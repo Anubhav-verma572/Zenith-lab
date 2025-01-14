@@ -32,21 +32,23 @@ body {
 }
 
 .main-content h1 {
-  font-size: 2rem;
+  font-size: 42px;
   line-height: 1.5;
-  margin-bottom: 20px;
+  font-weight: 500;
 }
 
 .score-button,
-.form-buttons {
-  background-color: transparent;
-  border: 0.9px solid #ffffff;
-  color: #ffffff;
-  padding: 5px 15px;
-  font-size: 1rem;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+.form-buttons 
+  {
+    background-color: transparent;
+    border: 0.9px solid #ffffff;
+    color: #ffffff;
+    padding: 5px 15px;
+    font-size: 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
 }
 
 .score-button:hover,
@@ -67,10 +69,11 @@ body {
 }
 
 .clients-section h2 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  color: #ffffff;
-  text-align: left;
+  font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-align: left;
 }
 
 .clients-logos {
@@ -136,6 +139,9 @@ body {
     width: 80%; /* Ensure logos don't stretch too much */
     margin: 0 auto;
   }
+}
+.colm{
+  gap: 12px;
 }
 
 @media (max-width: 480px) {

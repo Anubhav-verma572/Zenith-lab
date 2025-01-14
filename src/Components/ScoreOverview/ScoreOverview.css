@@ -12,12 +12,56 @@
   color: #fff;
   font-family: Arial, sans-serif;
 }
+.combine-e {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+  border-radius: 12px; /* Rounds the corners */
+ 
 
+}
+.poor{
+  
+    font-size: 14px;
+}
+.poor h5{
+ color: white !important; 
+}
+.borderclass strong{
+color: white;
+}
+.average-score{
+  border: 1px solid white;
+  border-top: none;
+  border-right: 0px;
+}
 .score-dial {
   flex: 1;
   text-align: center;
 }
+.statuss{
+  font-size: 20px;
+}
+.abc{
+  text-align: center;
+}
+.score-overview{
+gap: 15px;
+}
+.report-section{
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+  border-radius: 12px; /* Rounds the corners */
 
+}
+.average-score{
+  padding: 20px;
+  border-color: #E6E6E678 !important;
+}
+.future-proof-score{
+  padding: 26px;
+  border-bottom: none !important;
+  border: 1px solid #E6E6E678;
+  border-right: 0px;
+}
 .dial-container {
   position: relative;
   width: 150px;
@@ -44,27 +88,43 @@
 .status {
   margin-top: 10px;
 }
-
+.statuss p{
+  gap: 10px;
+  color: rgb(255, 200, 87)
+}
 .status span {
   color: yellow;
+ 
 }
-
+.status{
+  gap: 10px;
+}
+.SC p{
+  color: #9E9E9E;
+}
+.statuss{
+  
+  font-weight: 600;
+}
 .score-details, .report-section {
   flex: 1;
 }
 
 .report-button {
   
-  border: 1px solid white;
-  padding: 10px 20px;
- 
-  border-radius: 15px;
+  border: 1px solid #FFFF;
+  /* padding: 12px 20px; */
+  border-radius: 39px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  width: 342px;
+  height: 47px;
   cursor: pointer;
 }
 
 .score-cards {
   gap: 15px;
-  justify-content: center;
 }
 
 @media (min-width: 992px) {
@@ -80,10 +140,10 @@
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.594); /* Subtle shadow */
   border-radius: 8px;
 }
-
+/* 
 .score-card h5 {
   margin-bottom: 10px;
-}
+} */
 
 .score-card.good {
   border-left: 4px solid orange;
@@ -102,11 +162,25 @@
   background: #444;
 }
 .borderclass {
-  background-color: rgba(27, 26, 26, 0.126); /* Semi-transparent white background */
+
+    background: #504c4c;;
+    padding: -1px;
+    width: 39px;
+
   border: 1px solid rgba(18, 11, 11, 0.29); /* Light border */
   border-radius: 10px;
   backdrop-filter: blur(10px); /* Apply the blur effect */
   -webkit-backdrop-filter: blur(10px); /* For Safari support */
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.299); /* Subtle shadow */
    /* Adjust text color for better visibility */
+}
+.report-section h4 {
+  font-size: 24px !important ;
+  font-weight: 500 !important;
+}
+.report-section p {
+  font-size: 16px !important ;
+  font-weight: 400 !important;
+  color: #9E9E9E;
+  white-space: nowrap;
 }

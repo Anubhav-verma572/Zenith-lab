@@ -13,9 +13,9 @@ const EvaluationForm = () => {
   return (
     <div className="mainback">
       <div className="evaluation-container">
-        <div className="container pt-4 pe-4 ps-4">
+        <div className=" pt-4">
           <div className="evaluation-header">
-            <div>
+            <div className="add-logo">
               <img src={Image.logo} alt="Logo" className="logo" />
             </div>
           </div>
@@ -24,16 +24,17 @@ const EvaluationForm = () => {
             <h3 className="mt-4">New Revenue and Innovation</h3>
             <h3 className="mt-3"> Opportunities Intake Form</h3>
 
-            <p className="mt-4">
+            <p className="mt-3">
               Find out your future-proof score in under 30 secs
             </p>
-            <h3 className="mt-5">Instructions:</h3>
+            <h3 className="mt-4 inst">Instructions:</h3>
             <p className="mt-3">
               Please rate each statement based on your organization’s current
               practices using the following scale:
             </p>
             <div className="rating-scale">
-              <div className="scale-bar">
+            <div className="new-scale">
+            <div className="scale-bar">
                 <div
                   className="scale-item"
                   style={{ backgroundColor: "rgba(0, 0, 0, 1)" }}
@@ -65,7 +66,10 @@ const EvaluationForm = () => {
                   5
                 </div>
               </div>
-              <div className="scale-labels">
+            </div>
+              
+             <div className="new-scale-labels">
+             <div className="scale-labels">
                 <div className="ms-2">
                   Not <br /> Addressed
                 </div>
@@ -76,10 +80,12 @@ const EvaluationForm = () => {
                 <div>Strong</div>
                 <div>Exceptional</div>
               </div>
+             </div>
+             
             
           </div>
             </div>
-            <div className="d-flex align-items-end justify-content-end">
+            <div className="d-flex align-items-end justify-content-end new-text">
             <button
               className="evaluation-button px-3 py-2"
               onClick={handleStartEvaluation} // Attach the click handler
