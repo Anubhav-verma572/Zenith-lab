@@ -102,7 +102,7 @@ const Questionnaire = ({ updateScore }) => {
 
   // Handle "Back" button click
   const handleBack = () => {
-    if (currentStep > 0) setCurrentStep(currentStep - 1);
+    if (currentStep > 0) setCurrentStep((prevStep) => prevStep - 1); // Decrement the step
   };
 
   // Calculate the final score
@@ -132,13 +132,13 @@ const Questionnaire = ({ updateScore }) => {
 
   return (
     <div className="questionnaire-container">
-      <div className="container pt-3 pb-0">
+      <div className="container p-0 pb-0 h-100">
         <div className="evaluation-header">
           <div className="d-flex justify-content-start">
             <img src={Image.logo} alt="Logo" className="logo" />
           </div>
         </div>
-        <div className="content mt-5 text-dark">
+        <div className="content text-dark">
          <div><h2 className="text-start Market d-flex">
             {questions[currentStep].title}
           </h2></div> 
@@ -149,7 +149,8 @@ const Questionnaire = ({ updateScore }) => {
 
             </ul>
               <div className="rating-group text-start Market ">
-                {[1, 2, 3, 4, 5].map((rating) => (
+              <div className="new-list">
+              {[1, 2, 3, 4, 5].map((rating) => (
                   <button
                     key={rating}
                     className={`rating-btn   ${
@@ -164,6 +165,7 @@ const Questionnaire = ({ updateScore }) => {
                   </button>
                 ))}
               </div>
+              </div>
             </div>
           ))}
 
@@ -173,22 +175,24 @@ const Questionnaire = ({ updateScore }) => {
             </p>
           )}
 
-          <div className="navigation">
-            <button
-              className="back-btn bg-transparent text-dark"
-              onClick={handleBack}
-              disabled={currentStep === 0}
-            >
-              Back
-            </button>
-            <button className="next-btn" onClick={handleNext}>
-              {currentStep === questions.length - 1
-                ? "Next"
-                : "Next"}
-              <i className="fa-solid fa-arrow-right ps-2"></i>
-            </button>
-          </div>
+         
         </div>
+        <div className="navigation">
+  <button
+    className={`back-btn bg-transparent text-dark`} // Remove "disabled" class
+    onClick={() => {
+      if (currentStep > 0) handleBack(); // Only call handleBack if not on the first screen
+    }}
+  >
+    Back
+  </button>
+
+  <button className="next-btn" onClick={handleNext}>
+    {currentStep === questions.length - 1 ? "Next" : "Next"}
+    <i className="fa-solid fa-arrow-right ps-2"></i>
+  </button>
+</div>
+
       </div>
     </div>
   );

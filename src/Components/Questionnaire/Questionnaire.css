@@ -2,7 +2,6 @@
     font-family: Arial, sans-serif;
     /* color: #333; */
     text-align: center;
-    padding: 20px;
   
         margin: 0 auto;
      background: rgba(251, 251, 251, 1); 
@@ -14,20 +13,22 @@
   width: 100%; /* Adjust width if needed */
   height: 100vh; /* Adjust height as needed */
   }
- 
+  .Market{
+    margin-left: 5rem !important;
+    /* padding-left: 3rem; */
+  }
   @media screen and (min-width: 992px) {
     .Market{
       margin-left: 3rem;
       /* padding-left: 3rem; */
     }
     .rating-group{
-      justify-content: space-between;
+      /* justify-content: space-between;
       display: inline-flex;
       align-items: flex-start;
 position: relative;
-right: 30%;
+right: 30%; */
       gap: 10px;
-      margin: 0px !important;
     }
     }
     /* .markets{
@@ -35,9 +36,9 @@ right: 30%;
     } */
     @media screen and (max-width: 752px) {
       .rating-group{
-        justify-content: space-between;
+        /* justify-content: space-between;
         display: inline-flex;
-        align-items: flex-start;
+        align-items: flex-start; */
 
         gap: 10px;
         margin: 0px !important;
@@ -45,19 +46,20 @@ right: 30%;
       }
      
         .rating-group{
-          justify-content: space-between;
-          display: inline-flex;
+          /* justify-content: space-between; */
           gap: 10px;
         
         }
-        
+        .markets{
+          font-size: 24px;
+        }
   .header .logo {
     width: 50px;
     margin-bottom: 20px;
   }
   
   .content h2 {
-    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-size: 26px;
     white-space: nowrap;
     margin-bottom: 38px;
     font-weight: 500;
@@ -65,7 +67,7 @@ right: 30%;
 }
   
   .question {
-    margin-bottom: 20px;
+    margin-bottom: 36px;
   }
   
   .rating-group {
@@ -73,10 +75,18 @@ right: 30%;
     justify-content: center; */
     /* gap: 10px !important; */
   }
+  .new-list{
+    margin-left: 40px;
+    
+      display: flex ;
+
+      gap: 16px;
   
+  
+  }
   .rating-btn {
-    height: 37px;
-    width: 47px;
+    height: 47px;
+    width: 56px;
     border-radius: 39px;
     border: 1px solid rgba(155, 155, 155, 1);
     cursor: pointer;
@@ -84,7 +94,11 @@ right: 30%;
     justify-content: center;
     transition: all 0.3s;
   }
-  
+  .content{
+    margin-top: 5rem;
+    position: relative;
+    left: 4%;
+  }
   .rating-btn.selected {
     background-color: #000;
     color: #fff;
@@ -112,6 +126,7 @@ right: 30%;
   width: 79px;
   height: 47px;
   border-radius: 39px;
+  border: 1px solid #1E1A1B;
 
 }
   
@@ -124,7 +139,6 @@ right: 30%;
     display: inline-flex
 ;
     align-items: center;
-   padding: 15px;
     color: black;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
@@ -139,4 +153,9 @@ right: 30%;
     color: white;
 }
 
-  
+  .navigation{
+    padding-right: 101px;
+    position: absolute;
+    bottom: 37px;
+    width: -webkit-fill-available;
+  }
