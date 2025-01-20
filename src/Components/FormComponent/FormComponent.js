@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { Image } from "../../Assest/Allphotos";
 
 const FormComponent = () => {
+  // Use dynamic BASE_URL, default to localhost in development
   const BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:3000";
+  
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -20,47 +22,49 @@ const FormComponent = () => {
     setError("");
   };
 
-const handleFormSubmit = async (e) => {
-  e.preventDefault();
-  const { firstName, lastName, email, companyName } = formData;
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const { firstName, lastName, email, companyName } = formData;
 
-  if (!firstName || !lastName || !email || !companyName) {
-    setError("Please fill in all the fields before proceeding.");
-    return;
-  }
-
-  try {
-    const response = await fetch(`${BASE_URL}/macros/s/AKfycbxxNfClkqxP53UWHN3PNUfVTTsvMRN8XrlNrJjKjMaW7jlEoO33rVzRzkwlju7r-t91/exec`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
-
-    // Check if the response is successful (HTTP 200-299)
-    if (!response.ok) {
-      const errorText = await response.text(); // Read as text for error details
-      console.error("Error response text:", errorText);
-      setError(`HTTP error! Status: ${response.status}`);
+    if (!firstName || !lastName || !email || !companyName) {
+      setError("Please fill in all the fields before proceeding.");
       return;
     }
 
-    // Read the response as JSON
-    const result = await response.json();
+    try {
+      // Fetch request using BASE_URL from environment variables
+      const response = await fetch(`${BASE_URL}/macros/s/AKfycbxxNfClkqxP53UWHN3PNUfVTTsvMRN8XrlNrJjKjMaW7jlEoO33rVzRzkwlju7r-t91/exec`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    // Check if the result is a success
-    if (result.status === 'success') {
-      console.log('Data submitted successfully:', result.message);
-    } else {
-      setError(result.message || 'Unexpected response format.');
+      // Check if response is successful
+      if (!response.ok) {
+        const errorText = await response.text(); // Read error details as text
+        console.error("Error response text:", errorText);
+        setError(`HTTP error! Status: ${response.status}`);
+        return;
+      }
+      if (response.ok) {
+        navigate("/score-overview"); // Navigate to the next page
+
+        return;
+      }
+      // Parse the response as JSON
+      const result = await response.json();
+
+      // Check if result is successful
+      if (response.status === 'success') {
+        console.log('Data submitted successfully:', result.message);
+      } else {
+        setError(result.message || 'Unexpected response format.');
+      }
+    } catch (err) {
+      console.error("Error during fetch:", err);
+      setError("Network error: Unable to submit form.");
     }
-  } catch (err) {
-    navigate("/score-overview");
-    console.error("Error during fetch:", err);
-    setError('');
-  }
-};
-
-
+  };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
