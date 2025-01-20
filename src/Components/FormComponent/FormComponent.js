@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Image } from "../../Assest/Allphotos";
 
 const FormComponent = () => {
-  // Use dynamic BASE_URL, default to localhost in development
-  
+  const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -31,43 +30,28 @@ const FormComponent = () => {
     }
 
     try {
-      // Fetch request using BASE_URL from environment variables
-      const response = await fetch(`/macros/s/AKfycbxxNfClkqxP53UWHN3PNUfVTTsvMRN8XrlNrJjKjMaW7jlEoO33rVzRzkwlju7r-t91/exec`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch(`${BASE_URL}/macros/s/AKfycbxxNfClkqxP53UWHN3PNUfVTTsvMRN8XrlNrJjKjMaW7jlEoO33rVzRzkwlju7r-t91/exec`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      // Check if response is successful
       if (!response.ok) {
-        const errorText = await response.text(); // Read error details as text
+        const errorText = await response.text();
         console.error("Error response text:", errorText);
         setError(`HTTP error! Status: ${response.status}`);
         return;
       }
-      if (response.ok) {
-        navigate("/score-overview"); // Navigate to the next page
 
-        return;
-      }
-      // Parse the response as JSON
       const result = await response.json();
-
-      // Check if result is successful
-      if (response.status === 'success') {
-        console.log('Data submitted successfully:', result.message);
+      if (result.status === "success") {
+        navigate("/score-overview");
       } else {
-        setError(result.message || 'Unexpected response format.');
+        setError(result.message || "Unexpected response format.");
       }
     } catch (err) {
       console.error("Error during fetch:", err);
       setError("Network error: Unable to submit form.");
-    }
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleFormSubmit(e);
     }
   };
 
@@ -90,7 +74,6 @@ const FormComponent = () => {
                 placeholder="Your First Name"
                 value={formData.firstName}
                 onChange={handleChange}
-                onKeyDown={handleKeyDown} // Key down event for Enter
                 required
               />
             </div>
@@ -101,7 +84,6 @@ const FormComponent = () => {
                 placeholder="Your Last Name"
                 value={formData.lastName}
                 onChange={handleChange}
-                onKeyDown={handleKeyDown} // Key down event for Enter
                 required
               />
             </div>
@@ -115,7 +97,6 @@ const FormComponent = () => {
                 placeholder="Your Email Id"
                 value={formData.email}
                 onChange={handleChange}
-                onKeyDown={handleKeyDown} // Key down event for Enter
                 required
               />
             </div>
@@ -127,7 +108,6 @@ const FormComponent = () => {
                 placeholder="Your Company Name"
                 value={formData.companyName}
                 onChange={handleChange}
-                onKeyDown={handleKeyDown} // Key down event for Enter
                 required
               />
             </div>
