@@ -16,7 +16,7 @@ const FormComponent = () => {
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
-    setError(""); // Clear error on input change
+    setError("");
   };
 
 const handleFormSubmit = async (e) => {
