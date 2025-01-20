@@ -5,7 +5,6 @@ import { Image } from "../../Assest/Allphotos";
 
 const FormComponent = () => {
   // Use dynamic BASE_URL, default to localhost in development
-  const BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:3000";
   
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -33,7 +32,7 @@ const FormComponent = () => {
 
     try {
       // Fetch request using BASE_URL from environment variables
-      const response = await fetch(`${BASE_URL}/macros/s/AKfycbxxNfClkqxP53UWHN3PNUfVTTsvMRN8XrlNrJjKjMaW7jlEoO33rVzRzkwlju7r-t91/exec`, {
+      const response = await fetch(`/macros/s/AKfycbxxNfClkqxP53UWHN3PNUfVTTsvMRN8XrlNrJjKjMaW7jlEoO33rVzRzkwlju7r-t91/exec`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
