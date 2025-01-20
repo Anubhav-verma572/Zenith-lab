@@ -19,37 +19,51 @@ const FormComponent = () => {
     setError(""); // Clear error on input change
   };
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    const { firstName, lastName, email, companyName } = formData;
+const handleFormSubmit = async (e) => {
+  e.preventDefault();
+  const { firstName, lastName, email, companyName } = formData;
 
-    if (!firstName || !lastName || !email || !companyName) {
-      setError("Please fill in all the fields before proceeding.");
+  if (!firstName || !lastName || !email || !companyName) {
+    setError("Please fill in all the fields before proceeding.");
+    return;
+  }
+
+  try {
+    const response = await fetch('/macros/s/AKfycbxxNfClkqxP53UWHN3PNUfVTTsvMRN8XrlNrJjKjMaW7jlEoO33rVzRzkwlju7r-t91/exec', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    // Check if the response is successful (HTTP 200-299)
+    if (!response.ok) {
+      const errorText = await response.text(); // Read as text for error details
+      console.error("Error response text:", errorText);
+      setError(`HTTP error! Status: ${response.status}`);
       return;
     }
 
-    try {
-      // Use the proxy path (/api) instead of the full Google Apps Script URL
-      const response = await fetch("/macros/s/AKfycbxxNfClkqxP53UWHN3PNUfVTTsvMRN8XrlNrJjKjMaW7jlEoO33rVzRzkwlju7r-t91/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      
+    // Read the response as JSON
+    const result = await response.json();
 
-      const result = await response.json();
-      console.log("Result from API:", result);  // Log API response
-      
-      if (result.status === "success") {
-        console.log("Data submitted successfully:", result.message);
-        navigate("/score-overview");
-      } else {
-        console.error("Error submitting data:", result.message);
-        setError("There was an error while submitting your form. Please try again.");
-      }
-    } catch (err) {
-      console.error("Error submitting data:", err);
-      setError("There was an error while submitting your form. Please try again.");
+    // Check if the result is a success
+    if (result.status === 'success') {
+      console.log('Data submitted successfully:', result.message);
+    } else {
+      setError(result.message || 'Unexpected response format.');
+    }
+  } catch (err) {
+    navigate("/score-overview");
+    console.error("Error during fetch:", err);
+    setError('');
+  }
+};
+
+
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleFormSubmit(e);
     }
   };
 
@@ -72,6 +86,7 @@ const FormComponent = () => {
                 placeholder="Your First Name"
                 value={formData.firstName}
                 onChange={handleChange}
+                onKeyDown={handleKeyDown} // Key down event for Enter
                 required
               />
             </div>
@@ -82,6 +97,7 @@ const FormComponent = () => {
                 placeholder="Your Last Name"
                 value={formData.lastName}
                 onChange={handleChange}
+                onKeyDown={handleKeyDown} // Key down event for Enter
                 required
               />
             </div>
@@ -95,6 +111,7 @@ const FormComponent = () => {
                 placeholder="Your Email Id"
                 value={formData.email}
                 onChange={handleChange}
+                onKeyDown={handleKeyDown} // Key down event for Enter
                 required
               />
             </div>
@@ -106,6 +123,7 @@ const FormComponent = () => {
                 placeholder="Your Company Name"
                 value={formData.companyName}
                 onChange={handleChange}
+                onKeyDown={handleKeyDown} // Key down event for Enter
                 required
               />
             </div>
